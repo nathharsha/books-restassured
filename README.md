@@ -25,7 +25,10 @@ This project demonstrates API test automation using **REST Assured**, **Cucumber
    cd books-api-test
    
 2. **Run the tests**
+   ```bash
    mvn clean verify
 
-3. **Report**
-    After tests are run, report can be accessed here: target/cucumber-html-reports/overview-features.html
+4. **Report**
+   ```bash
+    After tests are run, report can be accessed here:
+   target/cucumber-html-reports/overview-features.html
