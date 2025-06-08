@@ -103,27 +103,7 @@
                     </properties>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>net.masterthought</groupId>
-                <artifactId>cucumber-reporting</artifactId>
-                <version>5.8.4</version>
-                <executions>
-                    <execution>
-                        <id>generate-cucumber-html-reports</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <projectName>RestAssured API Tests</projectName>
-                            <reportOutputDirectory>${project.build.directory}/cucumber-report-html</reportOutputDirectory>
-                            <jsonFiles>
-                                <param>${project.build.directory}/cucumber.json</param>
-                            </jsonFiles>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
     </build>
 </project>
