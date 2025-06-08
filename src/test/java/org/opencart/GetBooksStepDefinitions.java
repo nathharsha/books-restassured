@@ -14,14 +14,14 @@ public class GetBooksStepDefinitions {
 
     @Given("the 'simple books' API is available")
     public void the_simple_books_api_is_available() {
-        baseURI = "https://simple-books-api.glitch.me/books";
+        baseURI = "https://simple-books-api.glitch.me";
     }
 
     @When("I send a GET request to 'books' endpoint")
     public void i_send_a_get_request_to_books_endpoint() {
         response = given().
                         when().
-                            get(baseURI);
+                            get(baseURI+"/books");
     }
 
     @Then("the response status code should be {int}")
