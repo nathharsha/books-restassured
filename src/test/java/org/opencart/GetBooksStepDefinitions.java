@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
+import org.hamcrest.Matchers;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -25,8 +26,8 @@ public class GetBooksStepDefinitions {
     }
 
     @Then("the response status code should be {int}")
-    public void the_response_status_code_should_be(Integer int1) {
-        response.then().statusCode(200);
+    public void the_response_status_code_should_be(Integer responseStatusCode) {
+        response.then().statusCode(responseStatusCode);
     }
 
     @Then("the response should contain at least one book")
@@ -54,5 +55,37 @@ public class GetBooksStepDefinitions {
     public void the_response_should_contain_exactly_books(Integer count) {
         response.then()
                 .body("size()", equalTo(count));
+    }
+
+    @When("I send a POST request to {string} endpoint")
+    public void i_send_a_post_request_to_endpoint(String string) {
+        response = given().
+                when().
+                post(baseURI+"/books");
+    }
+
+    @When("I send a GET request to 'books' endpoint along with ID {int} as parameter")
+    public void i_send_a_get_request_to_endpoint_along_with_id_as_parameter(Integer id) {
+        response = given().
+                when().
+                get(baseURI+"/books/"+id);
+    }
+    @Then("the book details should be returned")
+    public void the_book_details_should_be_returned() {
+        response.then()
+                .body("id", notNullValue())
+                .body("name", notNullValue())
+                .body("author", notNullValue())
+                .body("isbn", notNullValue())
+                .body("type", notNullValue())
+                .body("price", notNullValue())
+                .body("current-stock", notNullValue())
+                .body("available", notNullValue());
+    }
+
+    @Then("error message should be returned in response body along with invalid ID {int}")
+    public void error_message_should_be_returned_in_response_body_along_with_invalid_id(Integer id) {
+        response.then()
+                .body("error", equalTo("No book with id "+id));
     }
 }
