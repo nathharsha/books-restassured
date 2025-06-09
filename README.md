@@ -6,7 +6,7 @@ This project demonstrates API test automation using **REST Assured**, **Cucumber
 
 ## Scope
 
-- API tested: `GET /books`
+- API tested: `GET /books` & `GET /books{id}`
 - Validation of:
     - HTTP Status Code
     - Response Time
